@@ -2,8 +2,8 @@ FROM ubuntu:16.04
 LABEL author="Corentin Debost <corentin.debost@kaazing.com>"
 
 # Install base dependencies
-RUN apt-get update && apt-get upgrade -y
-RUN apt-get install -y -q --no-install-recommends \
+RUN apt-get update -y && apt-get update && apt-get upgrade -y
+RUN apt-get install -y -q \
         apt-transport-https \
         build-essential \
         ca-certificates \
@@ -23,8 +23,9 @@ RUN apt-get install -y -q --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Install glTFConverter converter
-RUN apt-get install -y libxml2-dev libpng12-dev libpcre3-dev cmake&& \
-apt-get clean
+RUN apt-get update -y && apt-get update && \
+    apt-get install -y libxml2-dev libpng12-dev libpcre3-dev cmake \
+    && apt-get clean
 RUN git clone https://github.com/KhronosGroup/glTF.git /tmp/glTF
 RUN cd /tmp/glTF/ && git checkout 63e932907e3f0c834c8668d04f03ddb6eabf78d1 && git submodule init && git submodule update
 RUN cd /tmp/glTF/converter/COLLADA2GLTF && cmake . && make
