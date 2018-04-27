@@ -1,0 +1,13 @@
+{
+  "name": "collada2gltf-service",
+  "version": "1.0.0",
+  "description": "Provides a Docker image with the collada2gltf program installed.",
+  "scripts": {
+    "build": "docker build . -t montagestudio/collada2gltf-service:latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/montagestudio/collada2gltf-service.git"
+  }
+}
+
